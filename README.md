@@ -1,4 +1,4 @@
-# FashtTable: Fast Hash Tabel
+# FashtTable: Fast Hash Table
 A fast HashTable built with the purpose of implementing a fast search on account of accuracy.
 
 ## Usage
