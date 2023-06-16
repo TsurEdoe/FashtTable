@@ -11,7 +11,7 @@ A fast HashTable built with the purpose of implementing a fast search on account
 ## Description
 The table is built of M bits and K hash functions (user input).
 Each of the hash functions' output is distributed uniformly over [0..M-1].
-Meaning each hash calculation has an equal chance of $1/M$ to be equal to any value in [0..M-1]. 
+Meaning each hash calculation has an equal chance of $1 \over M$ to be equal to any value in [0..M-1]. 
 
 ## Actions
 ### Table Initialization
@@ -29,11 +29,12 @@ Only if all the bits are on, the value is said to be a member.
 Therefore, the probability of false positive is 0.
 
 Membership testing consists of the calculation of K hash functions on the given value, uniformly distributed.
-Therefore, there is chance of $1-1/M$ that a function will not assign a value to a particular index.
-The structure has N members, so the hash function ran a total of N*K times.
-Since the functions are uniformly distributed, the probability that any of the M bits will equal 0 after inserting N members is $(1-1/M)^(N*K)$. Which leaves us with the probability that a certain index will be on after inserting N members into the structure (this is because we will be content with at least one function that will be loaded to the desired index).
+Therefore, there is chance of $1 - {1 \over M}$ that a function will not assign a value to a particular index.
+The structure has N members, so the hash function ran a total of $N * K$ times.
+Since the functions are uniformly distributed, the probability that any of the M bits will equal 0 after inserting N members is $$1 - (1 - {1 \over M})^{N*K}$$
+Which leaves us with the probability that a certain index will be on after inserting N members into the structure (this is because we will be content with at least one function that will be loaded to the desired index).
 
-Therefore, the probability of false negative is $(1-(1-1/M)^((N*K)))^K$
+Therefore, the probability of false negative is $$(1 - (1 - {1 \over M})^{N*K})^K$$
 
 #### Insertion Example: 
 <img src="img.png" alt="Table Insertion Example" width="200" height="140">
